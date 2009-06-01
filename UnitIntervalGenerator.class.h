@@ -1,7 +1,7 @@
 #ifndef UNITINTERVALGENERATOR_CLASS_H_INCLUDED
 #define UNITINTERVALGENERATOR_CLASS_H_INCLUDED
 
-namespace MCS_RNG
+namespace RNG
 {
    //! A generic class that sequentially generates a number in the unit interval
    class UnitIntervalGenerator
@@ -9,7 +9,7 @@ namespace MCS_RNG
    public:
 
       //! Generates a number in the unit interval
-      double operator() = 0;
+      virtual double operator() () const = 0;
 
       //! Determines whether the generated number can take an interval endpont value (0 or 1)
       /*! Subtle differences in various implementations on unit interval number generators
@@ -26,6 +26,8 @@ namespace MCS_RNG
       reachable by the generator.
       */
       bool endpoint_reachable(int);
+
+      virtual UnitIntervalGenerator* clone() = 0;
 
    protected:
 

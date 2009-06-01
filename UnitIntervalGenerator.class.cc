@@ -1,8 +1,7 @@
-#include"rng/UnitIntervalGenerator.class.h"
-#include"core/StringStreamException.class.h"
+#include"UnitIntervalGenerator.class.h"
+#include <stdexcept>
 
-using namespace MCS_RNG;
-using MCS_CORE::StringStreamException;
+using namespace RNG;
 
 bool UnitIntervalGenerator::endpoint_reachable(int ep)
 {
@@ -10,7 +9,7 @@ bool UnitIntervalGenerator::endpoint_reachable(int ep)
    else if(ep==1) return can_be_one;
    else
    {
-      throw new StringStreamException(
+      throw std::logic_error(
          "Incorrect endpoint specified in MCS_RNG::UnitIntervalGenerator::endpoint_reachable(int)");
    }
 }

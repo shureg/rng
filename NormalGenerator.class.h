@@ -1,9 +1,9 @@
 #ifndef NORMALGENERATOR_CLASS_H_
 #define NORMALGENERATOR_CLASS_H_
 
-#include"rng/InverseCDFGenerator.class.hpp"
+#include"InverseCDFGenerator.class.hpp"
 
-namespace MCS_RNG
+namespace RNG
 {
 	class NormalGenerator: public InverseCDFGenerator<double>
 	{
@@ -17,7 +17,7 @@ namespace MCS_RNG
 		//! Standard Normal flag
 		bool is_std;
 
-		double InverseCDF(double);
+		const double InverseCDF(double) const;
 
 	public:
 		//! Default constructor
@@ -27,10 +27,10 @@ namespace MCS_RNG
 		//! Parametrised constructor
 		NormalGenerator(double,double);
 
-		const char* id();
-
 		//! Destructor
-		virtual ~NormalGenerator();
+		~NormalGenerator();
+
+		void describe(std::ostream& os) const;
 	};
 }
 

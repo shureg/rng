@@ -1,9 +1,9 @@
 #ifndef INVERSECDFGENERATOR_CLASS_HPP_
 #define INVERSECDFGENERATOR_CLASS_HPP_
 
-#include"rng/TypedRandomGenerator.class.hpp"
+#include"TypedRandomGenerator.class.hpp"
 
-namespace MCS_RNG
+namespace RNG
 {
 	//! An inverse CDF random number generator
 	/*! Uses the inverse distribution function to transform standard uniform random variates into
@@ -12,14 +12,14 @@ namespace MCS_RNG
 	{
 	protected:
 		//! Distribution-specific inverse CDF method
-		virtual T InverseCDF(double) = 0;
+		virtual const T InverseCDF(double) const = 0;
 	public:
-		T operator () ();
+		const T operator () () const;
 	};
 
-	template<typename T> T InverseCDFGenerator<T>::operator ()()
+	template<typename T> const T InverseCDFGenerator<T>::operator ()() const
 	{
-		return InverseCDF((*RandomGenerator::uni_gen)());
+		return InverseCDF(this->unit_interval_value());
 	}
 }
 

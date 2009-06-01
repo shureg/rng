@@ -1,9 +1,9 @@
 #ifndef TYPEDRANDOMGENERATOR_CLASS_HPP_
 #define TYPEDRANDOMGENERATOR_CLASS_HPP_
 
-#include"rng/RandomGenerator.class.h"
+#include"RandomGenerator.class.h"
 
-namespace MCS_RNG
+namespace RNG
 {
 	//! A generic templated random number generator
 	/*! Returns a random value of a specified type */
@@ -11,7 +11,7 @@ namespace MCS_RNG
 	{
 	public:
 		//! Random number generator method
-		virtual T operator() () = 0;
+		virtual const T operator() () const = 0;
 	};
 }
 
