@@ -4,6 +4,5 @@
 *.swp
 *~
 *.d
-test_suite/*
-!test_suite/*.cxx
+/test_suite/test_d
 install
