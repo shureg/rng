@@ -3,6 +3,6 @@
 *.a
 *.swp
 *~
-test_d
-test_s
-hist.tst
+*.d
+test_suite/*
+!test_suite/*.cxx

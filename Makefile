@@ -1,34 +1,59 @@
-LIB_OBJECTS = $(patsubst %.cc, %.o, $(shell find . -name "*.cc"))
+-include project.config.mk
 
-BOOST_INCLUDE ?= /usr/local/include/boost-1_39
+TEST_DIR = test_suite
 
-all: lib test
+HEADER_FILES = $(shell find $(PROJECT_INCLUDE_PATH) -name "*.h" -o -name "*.hpp")
 
-test: test_d test_s
+HEADER_STEMS = $(patsubst $(PROJECT_INCLUDE_PATH)/%,%,$(HEADER_FILES))
 
-test_s: test.o librng.a
-	g++ -o $@ -lgsl -lgslcblas $+
+export PROJECT_INCLUDE_PATH
 
-test_d: test.o
-	g++ -o $@ -lrng -L. $<
+ifeq "$(PROJECT_CONFIGURATION_TYPE)" "release" 
+   INSTALL_PREFIX = /usr/local
+else
+   INSTALL_PREFIX := $(CURDIR)/install
+   CONFIG_PREFIX := $(CURDIR)/install
+   INSTALLED_LIB_PATH = $(INSTALL_PREFIX)/lib
+   INSTALLED_HDR_PATH = $(INSTALL_PREFIX)/include
+   RPATH_FLAG = -Wl,-rpath,$(INSTALLED_LIB_PATH)
+endif
 
-lib: librng.so librng.a
+ifdef INSTALLED_LIB_PATH
+   export INSTALLED_LIB_PATH
+   RPATH_FLAG = -Wl,-rpath,$(INSTALLED_LIB_PATH)
+endif
+
+ifdef INSTALLED_HDR_PATH
+   export INSTALLED_HDR_PATH
+endif
+
+export RPATH_FLAG
+
+PROJECT_DEFINES = CONFIG_PREFIX
+
+export PROJECT_DEFINES
+export CONFIG_PREFIX
+export PROJECT_CONFIGURATION_TYPE
+export INSTALL_PREFIX
+
+all: lib
+
+.PHONY: install
+install:
+	$(MAKE) --directory=$(PROJECT_LIB_PATH) install
+	install -Dv $(PROJECT_CFG_PATH)/$(PROJECT_CFG_FILE) $(CONFIG_PREFIX)/etc/$(CFG_FILE)
+	@for h in $(HEADER_STEMS); \
+	   do \
+	     install -Dv $(PROJECT_INCLUDE_PATH)/$$h $(INSTALL_PREFIX)/include/$$h; \
+	   done
+
+test: install
+	$(MAKE) --directory=$(TEST_DIR)
+
+.PHONY: lib
+lib:
+	$(MAKE) --directory=$(PROJECT_LIB_PATH)
 
 clean:
-	@rm -rfv *.o
-	@rm -rfv *.a
-	@rm -rfv *.so
-
-librng.so: $(LIB_OBJECTS)
-	g++ -shared -Wl,-soname,$@ -o $@ -lgsl -lgslcblas $+
-
-librng.a: $(LIB_OBJECTS)
-	ar -rv $@ $+
-
-%: %.o
-
-%.o: %.cc
-	g++ -g -c -Wall -fPIC -I$(BOOST_INCLUDE) -o $@ $<
-
-%.o: %.cxx
-	g++ -g -c -Wall -fPIC -I$(BOOST_INCLUDE) -o $@ $<
+	$(MAKE) --directory=$(PROJECT_LIB_PATH) clean
+	$(MAKE) --directory=$(TEST_DIR) clean
