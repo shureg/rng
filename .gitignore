@@ -6,3 +6,4 @@
 *.d
 test_suite/*
 !test_suite/*.cxx
+install
