@@ -10,6 +10,8 @@ LIB_EXT_DEPS ?= gsl gslcblas
 
 LIB_EXT_DEP_PATHS ?= /usr/local/lib
 
-LIB_INCLUDE_PATHS += /usr/local/include/boost-1_39
+BOOST_INCLUDE_PATH ?= /usr/local/include/boost-1_39
+
+LIB_INCLUDE_PATHS += $(BOOST_INCLUDE_PATH)
 
 LIB_WARNINGS = all overloaded-virtual
