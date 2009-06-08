@@ -25,7 +25,8 @@ const UIG_Dictionary& RandomGenerator::uig_dict()
 
 const std::string& RandomGenerator::uig_name()
 {
-   std::string us = std::string(CONFIG_PREFIX_STR) + std::string("/etc/uig.cfg");
+   std::string us = std::string(CONFIG_PREFIX_STR) + 
+      std::string("/etc/rng/uig.cfg");
 
    std::ifstream ifs(us.c_str());
 

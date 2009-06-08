@@ -14,20 +14,18 @@ else
    INSTALL_PREFIX := $(CURDIR)/install
    CONFIG_PREFIX := $(CURDIR)/install
    INSTALLED_LIB_PATH = $(INSTALL_PREFIX)/lib
-   INSTALLED_HDR_PATH = $(INSTALL_PREFIX)/include
-   RPATH_FLAG = -Wl,-rpath,$(INSTALLED_LIB_PATH)
+   INSTALLED_HDR_PATH = $(INSTALL_PREFIX)/include/rng
 endif
 
 ifdef INSTALLED_LIB_PATH
    export INSTALLED_LIB_PATH
    RPATH_FLAG = -Wl,-rpath,$(INSTALLED_LIB_PATH)
+   export RPATH_FLAG
 endif
 
 ifdef INSTALLED_HDR_PATH
    export INSTALLED_HDR_PATH
 endif
-
-export RPATH_FLAG
 
 PROJECT_DEFINES = CONFIG_PREFIX
 
@@ -44,7 +42,7 @@ install:
 	install -Dv $(PROJECT_CFG_PATH)/$(PROJECT_CFG_FILE) $(CONFIG_PREFIX)/etc/$(PROJECT_NAME)/$(PROJECT_CFG_FILE)
 	@for h in $(HEADER_STEMS); \
 	   do \
-	     install -Dv $(PROJECT_INCLUDE_PATH)/$$h $(INSTALL_PREFIX)/$(PROJECT_NAME)/include/$$h; \
+	     install -Dv $(PROJECT_INCLUDE_PATH)/$$h $(INSTALL_PREFIX)/include/$(PROJECT_NAME)/$$h; \
 	   done
 
 test: install
