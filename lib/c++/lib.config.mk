@@ -1,4 +1,4 @@
-LIB_NAME_STEM ?= rng
+LIB_NAME_STEM ?= $(PROJECT_NAME)
 
 LIB_SRC_SUFFIX ?= .cc
 

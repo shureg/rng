@@ -10,8 +10,8 @@ test_d: test.o
 	g++ $(RPATH_FLAG) -o $@ -lrng -L$(INSTALLED_LIB_PATH) $<
 
 clean:
-	@rm -rf test_d
-	@rm -rf test_s
+	@rm -rfv test_d
+	@rm -rfv test.o
 
 %: %.o
 
