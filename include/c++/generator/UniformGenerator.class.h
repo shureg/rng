@@ -18,7 +18,7 @@
 #ifndef  _RNG_UNIFORMGENERATOR_CLASS_INC
 #define  _RNG_UNIFORMGENERATOR_CLASS_INC
 
-#include"rng/TypedRandomGenerator.class.hpp"
+#include"rng/generator/TypedRandomGenerator.class.hpp"
 
 namespace RNG
 {
@@ -32,7 +32,7 @@ namespace RNG
 
       const double operator() () const;
 
-      void describe(std::ostream&) const;
+      XmlField xml_description() const;
 
    protected:
 

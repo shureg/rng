@@ -14,7 +14,7 @@
 // 
 // =====================================================================================
 
-#include "uig/UIG_Dictionary.class.h"
+#include "rng/uig/UIG_Dictionary.class.h"
 #include <stdexcept>
 #include <string>
 #include <iostream>

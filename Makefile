@@ -10,6 +10,7 @@ export PROJECT_INCLUDE_PATH
 
 ifeq "$(PROJECT_CONFIGURATION_TYPE)" "release" 
    INSTALL_PREFIX = /usr/local
+   INSTALLED_HDR_PATH = $(INSTALL_PREFIX)/include/$(PROJECT_NAME)
 else
    INSTALL_PREFIX := $(CURDIR)/install
    CONFIG_PREFIX := $(CURDIR)/install
@@ -45,7 +46,7 @@ install:
 	     install -Dv $(PROJECT_INCLUDE_PATH)/$$h $(INSTALL_PREFIX)/include/$(PROJECT_NAME)/$$h; \
 	   done
 
-test: install
+test: 
 	$(MAKE) --directory=$(TEST_DIR)
 
 .PHONY: lib

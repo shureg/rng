@@ -47,6 +47,8 @@ int main ( int argc, char** argv )
 
       ofs.close();
 
+      cout << U << Z << H;
+
       return EXIT_SUCCESS;
    }
    catch(const std::exception& e)

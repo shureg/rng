@@ -6,9 +6,9 @@ LIB_OBJ_SUFFIX ?= .o
 
 LIB_SRC_DEP_SUFFIX ?= .d
 
-LIB_EXT_DEPS ?= gsl gslcblas
+LIB_EXT_DEPS ?= gsl gslcblas xml_serialisation
 
-LIB_EXT_DEP_PATHS ?= /usr/local/lib
+#LIB_EXT_DEP_PATHS ?= /usr/local/lib
 
 BOOST_INCLUDE_PATH ?= /usr/local/include/boost-1_39
 

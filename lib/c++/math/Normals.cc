@@ -14,7 +14,7 @@ via rational approximations
   */
  
 #include<cmath>
-#include"math/Normals.h"
+#include"rng/math/Normals.h"
 
 // the basic math functions should be in namespace std but aren't in VCPP6
 #if !defined(_MSC_VER)

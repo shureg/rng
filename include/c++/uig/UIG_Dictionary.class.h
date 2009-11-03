@@ -18,8 +18,8 @@
 #ifndef  _RNG_UIG_DICTIONARY_CLASS_INC
 #define  _RNG_UIG_DICTIONARY_CLASS_INC
 
-#include "uig/UnitIntervalGenerator.class.h"
-#include "uig/gslPRGenerator.class.h"
+#include "rng/uig/UnitIntervalGenerator.class.h"
+#include "rng/uig/gslPRGenerator.class.h"
 #include <string>
 
 namespace RNG

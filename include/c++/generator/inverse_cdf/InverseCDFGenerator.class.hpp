@@ -1,7 +1,7 @@
 #ifndef INVERSECDFGENERATOR_CLASS_HPP_
 #define INVERSECDFGENERATOR_CLASS_HPP_
 
-#include"rng/TypedRandomGenerator.class.hpp"
+#include"rng/generator/TypedRandomGenerator.class.hpp"
 
 namespace RNG
 {

@@ -2,7 +2,7 @@
 #define GSLPRGENERATOR_CLASS_H_
 
 #include<gsl/gsl_rng.h>
-#include"uig/UnitIntervalGenerator.class.h"
+#include"rng/uig/UnitIntervalGenerator.class.h"
 
 namespace RNG
 {

@@ -1,4 +1,4 @@
-#include"uig/UnitIntervalGenerator.class.h"
+#include"rng/uig/UnitIntervalGenerator.class.h"
 #include <stdexcept>
 
 using namespace RNG;

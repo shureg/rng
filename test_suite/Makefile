@@ -7,7 +7,7 @@ all: test_d
 -include test.d
 
 test_d: test.o
-	g++ $(RPATH_FLAG) -o $@ -lrng -L$(INSTALLED_LIB_PATH) $<
+	g++ -o $@ -lrng $<
 
 clean:
 	@rm -rfv test_d

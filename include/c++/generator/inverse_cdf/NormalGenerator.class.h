@@ -1,7 +1,7 @@
 #ifndef NORMALGENERATOR_CLASS_H_
 #define NORMALGENERATOR_CLASS_H_
 
-#include"rng/inverse_cdf/InverseCDFGenerator.class.hpp"
+#include"rng/generator/inverse_cdf/InverseCDFGenerator.class.hpp"
 
 namespace RNG
 {
@@ -30,7 +30,7 @@ namespace RNG
 		//! Destructor
 		~NormalGenerator();
 
-		void describe(std::ostream& os) const;
+		XmlField xml_description() const;
 	};
 }
 

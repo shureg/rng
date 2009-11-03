@@ -1,4 +1,4 @@
-#include"uig/gslPRGenerator.class.h"
+#include"rng/uig/gslPRGenerator.class.h"
 #include<ctime>
 
 using namespace RNG;

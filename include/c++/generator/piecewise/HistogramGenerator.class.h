@@ -17,8 +17,8 @@
 #ifndef  _RNG_HISTOGRAMGENERATOR_CLASS_INC
 #define  _RNG_HISTOGRAMGENERATOR_CLASS_INC
 
-#include "rng/piecewise/PiecewiseRandomGenerator.class.hpp"
-#include "rng/UniformGenerator.class.h"
+#include "rng/generator/piecewise/PiecewiseRandomGenerator.class.hpp"
+#include "rng/generator/UniformGenerator.class.h"
 #include <vector>
 #include <string>
 #include <utility>

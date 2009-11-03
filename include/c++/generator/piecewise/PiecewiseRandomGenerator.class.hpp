@@ -18,8 +18,8 @@
 #ifndef  _RNG_PIECEWISERANDOMGENERATOR_CLASS_INC
 #define  _RNG_PIECEWISERANDOMGENERATOR_CLASS_INC
 
-#include "rng/TypedRandomGenerator.class.hpp"
-#include "rng/UniformGenerator.class.h"
+#include "rng/generator/TypedRandomGenerator.class.hpp"
+#include "rng/generator/UniformGenerator.class.h"
 #include "boost/ptr_container/ptr_map.hpp"
 #include <iostream>
 #include "boost/format.hpp"
@@ -32,7 +32,7 @@ namespace RNG
 
       const T operator () () const;
 
-      void describe(std::ostream&) const;
+      XmlField xml_description() const;
 
    protected:
 
@@ -47,12 +47,19 @@ namespace RNG
       return (*((this->dist.lower_bound( U() ))->second))();
    }
 
-   template<typename T> inline void PiecewiseRandomGenerator<T>::describe(std::ostream& os) const
+   template<typename T> inline XmlField PiecewiseRandomGenerator<T>::xml_description() const
    {
-      os << "Piecewise Generator" << this << std::endl;
+      XmlField tmp("Piecewise_Random_Generator");
       for(typename boost::ptr_map<double, TypedRandomGenerator<T> >::const_iterator
 	    i=dist.begin(); i!=dist.end(); ++i)
-	 os << (boost::format ( "[%f] { %s }\n" ) % (i->first) % (i->second) );
+      {
+	 XmlField item("item");
+	 item.add_field("weight",i->first);
+	 item.add_field(i->second->xml_description());
+	 tmp.add_field(item);
+      }
+
+      return tmp;
    }
 }
 

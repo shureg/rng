@@ -1,9 +1,13 @@
 #ifndef RANDOMGENERATOR_CLASS_H_
 #define RANDOMGENERATOR_CLASS_H_
 
-#include"uig/UnitIntervalGenerator.class.h"
+#include"rng/uig/UnitIntervalGenerator.class.h"
 #include <string>
 #include <iosfwd>
+#include"xml_serialisation/XmlSerialisableObject.class.h"
+
+using XML_SERIALISATION::XmlSerialisableObject;
+using XML_SERIALISATION::XmlField;
 
 namespace RNG
 {
@@ -12,13 +16,11 @@ namespace RNG
 	//! A prototype of a generic random generator
 	/*! Enforces the notion of a uniform random number generator that is shared
 		accross all random generators. */
-	class RandomGenerator
+	class RandomGenerator: public XmlSerialisableObject
 	{
 	public:
 
 	   virtual ~RandomGenerator() = 0;
-
-	   virtual void describe(std::ostream&) const = 0;
 
 	protected:
 		//! Shared uniform random number generator
@@ -37,7 +39,7 @@ namespace RNG
 inline std::ostream& operator << (std::ostream& os, 
       const RNG::RandomGenerator& rg)
 {
-   rg.describe(os);
+   os << rg.xml_description();
 
    return os;
 }
