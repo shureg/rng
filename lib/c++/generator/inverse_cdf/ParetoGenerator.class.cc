@@ -32,7 +32,10 @@ const double ParetoGenerator::InverseCDF(double u) const
 
 XmlField ParetoGenerator::xml_description() const
 {
-   XmlField tmp("Pareto_Random_Generator");
+   XmlField tmp("Pareto.Random.Generator");
+
+   tmp("generator_type") = "inverse cdf";
+
    tmp.add_field("minimal_value",x_min);
    tmp.add_field("exponent",k);
 

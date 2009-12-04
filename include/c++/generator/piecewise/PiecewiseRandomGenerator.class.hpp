@@ -49,12 +49,12 @@ namespace RNG
 
    template<typename T> inline XmlField PiecewiseRandomGenerator<T>::xml_description() const
    {
-      XmlField tmp("Piecewise_Random_Generator");
+      XmlField tmp("Piecewise.Random.Generator");
       for(typename boost::ptr_map<double, TypedRandomGenerator<T> >::const_iterator
 	    i=dist.begin(); i!=dist.end(); ++i)
       {
-	 XmlField item("item");
-	 item.add_field("weight",i->first);
+	 XmlField item("piece");
+	 item("weight") = i->first;
 	 item.add_field(i->second->xml_description());
 	 tmp.add_field(item);
       }

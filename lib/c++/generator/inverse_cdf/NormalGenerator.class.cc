@@ -23,7 +23,10 @@ const double NormalGenerator::InverseCDF(double u) const
 
 XmlField NormalGenerator::xml_description() const
 {
-   XmlField tmp("Normal_Random_Generator");
+   XmlField tmp("Normal.Random.Generator");
+
+   tmp("generator_type") = "inverse cdf";
+
    tmp.add_field("mean",mean);
    tmp.add_field("variance",var);
 

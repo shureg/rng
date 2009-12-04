@@ -18,9 +18,10 @@
 #include<stdexcept>
 #include<string>
 
-#include "rng/UniformGenerator.class.h"
-#include "rng/inverse_cdf/NormalGenerator.class.h"
-#include "rng/piecewise/HistogramGenerator.class.h"
+#include "rng/generator/UniformGenerator.class.h"
+#include "rng/generator/inverse_cdf/NormalGenerator.class.h"
+#include "rng/generator/piecewise/HistogramGenerator.class.h"
+#include "rng/generator/uniform_ratio/urTGenerator.class.h"
 
 using namespace std;
 using namespace RNG;
@@ -34,20 +35,25 @@ int main ( int argc, char** argv )
 
       NormalGenerator Z;
 
-      for(int i=0; i<10; ++i)
-      {
-	 cout << U() << '\t' << Z() << endl;
-      }
-
       HistogramGenerator H("hist.cfg");
+
+      urTGenerator T(5);
 
       ofstream ofs("norm.tst");
 
-      for(int j =0; j<10000; ++j) ofs << Z() << endl;
+      ofs << "z\n";
+
+      Z.stream_dump(ofs,10000);
 
       ofs.close();
 
-      cout << U << Z << H;
+      ofs.open("t.tst");
+
+      ofs << "t\n";
+
+      T.stream_dump(ofs,10000);
+
+      cout << U << Z << H << T;
 
       return EXIT_SUCCESS;
    }

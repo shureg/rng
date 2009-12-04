@@ -34,7 +34,7 @@ const double UniformGenerator::operator () () const
 
 XmlField UniformGenerator::xml_description() const
 {
-   XmlField tmp("Uniform_Random_Generator");
+   XmlField tmp("Uniform.Random.Generator");
    tmp.add_field("lower_bound",l);
    tmp.add_field("upper_bound",u);
 

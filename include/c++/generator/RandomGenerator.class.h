@@ -36,12 +36,4 @@ namespace RNG
 	};
 }
 
-inline std::ostream& operator << (std::ostream& os, 
-      const RNG::RandomGenerator& rg)
-{
-   os << rg.xml_description();
-
-   return os;
-}
-
 #endif /*RANDOMGENERATOR_CLASS_H_*/
