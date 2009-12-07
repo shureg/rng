@@ -1,1 +1,4 @@
-*.tst
+!.gitignore
+!test.cxx
+!hist.cfg
+!Makefile
