@@ -62,7 +62,7 @@ $(MODULE).%.swig_wrap.so: $(MODULE).%.swig_wrap.o $(DY_LIB_NAME)
 	g++ -shared -Wl,-soname=$@$(SWIG_RPATH_FLAG) -o $@ $< -L. -l$(LIB_NAME_STEM)
 	@$(make_link $@,$(WRAP_LIB_SO_NAME))
 
-$(MODULE).%.swig_wrap.cc: $(MODULE).%.swig_wrap.i
+$(MODULE).%.swig_wrap.cc: $(MODULE).%.swig_wrap.swg
 	$(call swig_depend,$<,cc,$(MODULE).$*.swig_wrap.d,-I$(PROJECT_INCLUDE_PATH))
 	swig -c++ -$(TARGET_LANG) -module $(WRAP_MODULE_NAME) -I$(PROJECT_INCLUDE_PATH) $(SWIG_FLAGS) -o $@ $<
 
