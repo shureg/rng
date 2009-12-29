@@ -43,15 +43,17 @@ $(DY_LIB_NAME): $(LIB_OBJECTS)
 $(ST_LIB_NAME): $(LIB_OBJECTS)
 	ar -rv $@ $^
 
-clean:
+clean: swigclean
 	@rm -rfv $(DY_LIB_NAME)
 	@rm -rfv $(ST_LIB_NAME)
 	@find -name "*$(LIB_OBJ_SUFFIX)" -type f -exec rm -rfv '{}' \;  
 
 .PHONY: install
-install: lib
+install: swiginstall
 	install -Dv $(DY_LIB_NAME) $(INSTALL_PREFIX)/lib/$(DY_LIB_NAME)
 	install -Dv $(ST_LIB_NAME) $(INSTALL_PREFIX)/lib/$(ST_LIB_NAME)
+
+-include swig_wrap.mk
 
 -include $(LIB_DEP_FILES)
 

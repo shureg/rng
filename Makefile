@@ -49,9 +49,12 @@ install:
 test: 
 	$(MAKE) --directory=$(TEST_DIR)
 
-.PHONY: lib
+.PHONY: lib wrap
 lib:
 	$(MAKE) --directory=$(PROJECT_LIB_PATH)
+
+wrap:
+	$(MAKE) --directory=$(PROJECT_LIB_PATH) $@
 
 clean:
 	$(MAKE) --directory=$(PROJECT_LIB_PATH) clean
