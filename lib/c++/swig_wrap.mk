@@ -43,11 +43,13 @@ swiginstall: $(foreach l,$(TARGET_LANGS),$l_install)
 
 %_install: INSTALLABLE_SCRIPT = $(if $(SUFFIX_$*),$(shell find . -maxdepth 1 -type f -regex ".*$(MODULE)_$*_swig_wrap\.$(SUFFIX_$*)"))
 %_install: INSTALLABLE_LIB = $(shell find . -maxdepth 1 -type f -regex ".*$(MODULE)\.$*\.swig_wrap\.so")
+%_install: INTERFACE_FILE = $(shell find . -maxdepth 1 -type f -regex ".*$(MODULE)\.$*.swig_wrap.swg")
 
 %_install:
-	install -Dv --backup=numbered $(INSTALLABLE_SCRIPT) $(MODULE_PATH_$*)/$(notdir $(INSTALLABLE_SCRIPT))
-	install -Dv --backup=numbered $(INSTALLABLE_LIB) $(MODULE_PATH_$*)/$(notdir $(INSTALLABLE_LIB))
-	$(call make_link,$(MODULE_PATH_$*)/$(notdir $(INSTALLABLE_LIB)),$(call get_prefix,$*)$(call get_wrap_lib_name,$(INSTALLABLE_LIB)).so)
+	@install -Dv $(INTERFACE_FILE) $(INSTALLED_HDR_PATH)/$(notdir $(INTERFACE_FILE))
+	@install -Dv --backup=numbered $(INSTALLABLE_SCRIPT) $(MODULE_PATH_$*)/$(notdir $(INSTALLABLE_SCRIPT))
+	@install -Dv --backup=numbered $(INSTALLABLE_LIB) $(MODULE_PATH_$*)/$(notdir $(INSTALLABLE_LIB))
+	@$(call make_link,$(MODULE_PATH_$*)/$(notdir $(INSTALLABLE_LIB)),$(call get_prefix,$*)$(call get_wrap_lib_name,$(INSTALLABLE_LIB)).so)
 
 
 -include $(INTERFACE_DEPS)
@@ -64,7 +66,7 @@ $(MODULE).%.swig_wrap.so: $(MODULE).%.swig_wrap.o $(DY_LIB_NAME)
 
 $(MODULE).%.swig_wrap.cc: $(MODULE).%.swig_wrap.swg
 	$(call swig_depend,$<,cc,$(MODULE).$*.swig_wrap.d,-I$(PROJECT_INCLUDE_PATH))
-	swig -c++ -$(TARGET_LANG) -module $(WRAP_MODULE_NAME) -I$(PROJECT_INCLUDE_PATH) $(SWIG_FLAGS) -o $@ $<
+	swig -c++ -$(TARGET_LANG) -I$(PROJECT_INCLUDE_PATH) $(SWIG_FLAGS) -o $@ $<
 
 #$(MODULE).python.swig_wrap.cc: SWIG_FLAGS += -classic
 $(MODULE).python.swig_wrap.o: LIB_INCLUDE_PATHS += $(SWIG_INCLUDE_python)

@@ -15,7 +15,7 @@ else
    INSTALL_PREFIX := $(CURDIR)/install
    CONFIG_PREFIX := $(CURDIR)/install
    INSTALLED_LIB_PATH = $(INSTALL_PREFIX)/lib
-   INSTALLED_HDR_PATH = $(INSTALL_PREFIX)/include/rng
+   INSTALLED_HDR_PATH = $(INSTALL_PREFIX)/include/$(PROJECT_NAME)
 endif
 
 ifdef INSTALLED_LIB_PATH
@@ -40,7 +40,7 @@ all: lib
 .PHONY: install
 install:
 	$(MAKE) --directory=$(PROJECT_LIB_PATH) install
-	install -Dv $(PROJECT_CFG_PATH)/$(PROJECT_CFG_FILE) $(CONFIG_PREFIX)/etc/$(PROJECT_NAME)/$(PROJECT_CFG_FILE)
+	@install -Dv $(PROJECT_CFG_PATH)/$(PROJECT_CFG_FILE) $(CONFIG_PREFIX)/etc/$(PROJECT_NAME)/$(PROJECT_CFG_FILE)
 	@for h in $(HEADER_STEMS); \
 	   do \
 	     install -Dv $(PROJECT_INCLUDE_PATH)/$$h $(INSTALL_PREFIX)/include/$(PROJECT_NAME)/$$h; \
