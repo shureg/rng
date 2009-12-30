@@ -10,13 +10,16 @@ PYTHON_VERSION_XY := $(shell env python -c "import sys; print sys.version" | hea
 MODULE_PATH_python := $(PYTHON_PREFIX)/lib/python$(PYTHON_VERSION_XY)/site-packages
 
 SUFFIX_python = py
+SUFFIX_r = R
 
 SWIG_INCLUDE_python = $(PYTHON_PREFIX)/include/python$(PYTHON_VERSION_XY)
 SWIG_INCLUDE_r = /usr/share/R/include
 
+SWIG_LIBR_PATH = /usr/lib/R/lib
+
 MODULE := $(PROJECT_NAME)
 
-TARGET_LANGS := python
+TARGET_LANGS := python r
 
 RUNTIME_SUFFIXES = pyc py R
 
@@ -61,7 +64,7 @@ $(MODULE).%.swig_wrap.so: WRAP_LIB_SO_NAME = $(DL_PREFIX)$(WRAP_MODULE_NAME).so
 $(MODULE).%.swig_wrap.so: SWIG_RPATH_FLAG = $(if $(filter-out release,$(PROJECT_CONFIGURATION_TYPE)),$(,)-rpath=$(CURDIR),)
 
 $(MODULE).%.swig_wrap.so: $(MODULE).%.swig_wrap.o $(DY_LIB_NAME)
-	g++ -shared -Wl,-soname=$@$(SWIG_RPATH_FLAG) -o $@ $< -L. -l$(LIB_NAME_STEM)
+	g++ -shared -Wl,-soname=$@$(SWIG_RPATH_FLAG) -o $@ $< -L. -l$(LIB_NAME_STEM) $(DL_FLAGS)
 	@$(make_link $@,$(WRAP_LIB_SO_NAME))
 
 $(MODULE).%.swig_wrap.cc: $(MODULE).%.swig_wrap.swg
@@ -69,8 +72,11 @@ $(MODULE).%.swig_wrap.cc: $(MODULE).%.swig_wrap.swg
 	swig -c++ -$(TARGET_LANG) -I$(PROJECT_INCLUDE_PATH) $(SWIG_FLAGS) -o $@ $<
 
 #$(MODULE).python.swig_wrap.cc: SWIG_FLAGS += -classic
+#$(MODULE).%.swig_wrap.o: LIB_INCLUDE_PATHS += $(SWIG_INCLUDE_$*)
+
 $(MODULE).python.swig_wrap.o: LIB_INCLUDE_PATHS += $(SWIG_INCLUDE_python)
 
+$(MODULE).r.swig_wrap.so: DL_FLAGS += -L$(SWIG_LIBR_PATH) -lR
 $(MODULE).r.swig_wrap.o: LIB_INCLUDE_PATHS += $(SWIG_INCLUDE_r)
 
 #%.o: %.cc

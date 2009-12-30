@@ -3,7 +3,7 @@
 DY_LIB_NAME = lib$(LIB_NAME_STEM).so
 ST_LIB_NAME = lib$(LIB_NAME_STEM).a
 
-LIB_OBJECTS = $(patsubst %$(LIB_SRC_SUFFIX), %$(LIB_OBJ_SUFFIX), $(shell find . -name "*$(LIB_SRC_SUFFIX)" -type f))
+LIB_OBJECTS = $(patsubst %$(LIB_SRC_SUFFIX), %$(LIB_OBJ_SUFFIX), $(shell find . -name "*$(LIB_SRC_SUFFIX)" ! -name "*swig_wrap$(LIB_SRC_SUFFIX)" -type f))
 
 LIB_DEP_FILES = $(patsubst %$(LIB_OBJ_SUFFIX), %$(LIB_SRC_DEP_SUFFIX), $(LIB_OBJECTS))
 
