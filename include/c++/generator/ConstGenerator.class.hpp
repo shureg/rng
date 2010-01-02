@@ -40,15 +40,15 @@ namespace RNG
    template<typename T> ConstGenerator<T>::ConstGenerator(const T& _value): value(_value)
    {}
 
-   template<typename T> const T ConstGenerator<T> operator() () const
+   template<typename T> const T ConstGenerator<T>::operator() () const
    {
       return value;
    }
 
-   tmeplate<typename T> XmlField ConstGenerator<T>::xml_description() const
+   template<typename T> XmlField ConstGenerator<T>::xml_description() const
    {
       XmlField tmp("Const_Generator");
-      tmp.add_field("value",value);
+      tmp("value")=value;
 
       return tmp;
    }
