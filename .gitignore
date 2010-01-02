@@ -6,5 +6,4 @@
 *.d
 /test_suite/*
 install
-lib/c++/*.py
-lib/c++/*.R
+swig/output

@@ -11,6 +11,8 @@ PROJECT_CFG_PATH = cfg
 
 PROJECT_LIB_PATH := $(CURDIR)/lib/c++
 
+PROJECT_WRAP_PATH := $(CURDIR)/swig
+
 BOOST_INCLUDE_PATH = /usr/local/include/boost-1_39
 
 export BOOST_INCLUDE_PATH

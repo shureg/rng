@@ -15,3 +15,5 @@ LIB_EXT_DEPS ?= gsl gslcblas xml_serialisation
 #LIB_INCLUDE_PATHS += $(BOOST_INCLUDE_PATH)
 
 LIB_WARNINGS = all overloaded-virtual
+
+LIB_CONFIG_INCLUDED +=

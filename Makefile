@@ -7,6 +7,8 @@ HEADER_FILES = $(shell find $(PROJECT_INCLUDE_PATH) -name "*.h" -o -name "*.hpp"
 HEADER_STEMS = $(patsubst $(PROJECT_INCLUDE_PATH)/%,%,$(HEADER_FILES))
 
 export PROJECT_INCLUDE_PATH
+export PROJECT_LIB_PATH
+export PROJECT_WRAP_PATH
 
 ifeq "$(PROJECT_CONFIGURATION_TYPE)" "release" 
    INSTALL_PREFIX = /usr/local
@@ -35,7 +37,7 @@ export CONFIG_PREFIX
 export PROJECT_CONFIGURATION_TYPE
 export INSTALL_PREFIX
 
-all: lib
+all: lib wrap
 
 .PHONY: install
 install:
@@ -59,3 +61,6 @@ wrap:
 clean:
 	$(MAKE) --directory=$(PROJECT_LIB_PATH) clean
 	$(MAKE) --directory=$(TEST_DIR) clean
+
+garbage_clean:
+	@find . -regex ".*\(~\|\.swp\)" -type f -exec rm -fv '{}' \;
