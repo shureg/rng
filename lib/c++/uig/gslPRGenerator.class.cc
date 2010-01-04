@@ -40,10 +40,3 @@ void gslPRGenerator::set_endpoints()
 
 	can_be_one=false;
 }
-
-UnitIntervalGenerator* gslPRGenerator::clone()
-{
-   gslPRGenerator* tmp = new gslPRGenerator(*this);
-
-   return (UnitIntervalGenerator*) tmp;
-}

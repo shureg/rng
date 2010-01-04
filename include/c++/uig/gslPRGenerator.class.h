@@ -35,8 +35,6 @@ namespace RNG
 		//! The generator method
 		/*! Returns a pseudo-random double precision number on a unit interval*/
 		double operator() () const ;
-
-		UnitIntervalGenerator* clone();
 	};
 }
 

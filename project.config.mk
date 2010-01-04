@@ -5,7 +5,7 @@ PROJECT_CONFIGURATION_TYPE = release
 
 PROJECT_INCLUDE_PATH := $(CURDIR)/include/c++
 
-PROJECT_CFG_FILE = uig.cfg
+PROJECT_CFG_FILE = uig.cfg.lua
 
 PROJECT_CFG_PATH = cfg
 

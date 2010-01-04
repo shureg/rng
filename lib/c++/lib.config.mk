@@ -6,7 +6,7 @@ LIB_OBJ_SUFFIX ?= .o
 
 LIB_SRC_DEP_SUFFIX ?= .d
 
-LIB_EXT_DEPS ?= gsl gslcblas xml_serialisation
+LIB_EXT_DEPS ?= gsl gslcblas xml_serialisation callback_log lua dl
 
 #LIB_EXT_DEP_PATHS ?= /usr/local/lib
 

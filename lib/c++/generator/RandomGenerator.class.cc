@@ -6,6 +6,19 @@
 #include<stdexcept>
 #include "boost/format.hpp"
 
+#include "callback_log/LOG.h"
+
+using namespace CALLBACK_LOG;
+
+extern "C"
+{
+#include "lua.h"
+#include "lualib.h"
+#include "lauxlib.h"
+}
+
+
+
 #define CONFIG_PREFIX_STR TO_STR(CONFIG_PREFIX)
 
 #define TO_STR(s) TO_STR_HIDDEN(s)
@@ -14,40 +27,91 @@
 
 using namespace RNG;
 
+using namespace std;
+
 RandomGenerator::~RandomGenerator() {}
 
-const UIG_Dictionary& RandomGenerator::uig_dict()
-{
-   static UIG_Dictionary dummy = UIG_Dictionary();
+const UnitIntervalGenerator* RandomGenerator::uig_holder = 0;
 
-   return dummy;
+lua_State* RandomGenerator::get_lua_State()
+{
+   static lua_State* l = luaL_newstate();
+
+   return l;
 }
 
-const std::string& RandomGenerator::uig_name()
+void RandomGenerator::get_external_uig(
+      const UnitIntervalGenerator* uig_input)
 {
-   std::string us = std::string(CONFIG_PREFIX_STR) + 
-      std::string("/etc/rng/uig.cfg");
+   RandomGenerator::uig_holder = uig_input;
+}
 
-   std::ifstream ifs(us.c_str());
+const UnitIntervalGenerator* RandomGenerator::set_uig()
+{
+   lua_State* L = RandomGenerator::get_lua_State();
+   
+   luaL_openlibs(L);
+   RandomGenerator::uig_holder = 0;
 
-   static std::string dummy;
+   const char* rng_lua_wrap_init_string =
+      "require(\"rng_lua_swig_wrap\");"\
+      "rng = rng_lua_swig_wrap";
 
-   if(ifs.good()) getline(ifs,dummy);
-   else
-      throw std::runtime_error(
-	    (boost::format(
-	       "uig.cfg could not be opened (looking for %s)")
-	    % us).str().c_str());
+   if( luaL_dostring(L,rng_lua_wrap_init_string) )
+      LOG(EXCEPTION, boost::format(
+	       "Exception caught while tryign to load the "\
+	       "Lua rng swig wrap module\n")
+	    );
 
-   ifs.close();
+   string lua_cfg_file = 
+      string(CONFIG_PREFIX_STR) + string("/etc/rng/uig.cfg.lua");
 
-   return dummy;
+   if( luaL_dofile(L,lua_cfg_file.c_str()) )
+      LOG(EXCEPTION, boost::format
+	    ("Exception caught while trying to run uig Lua configuration "\
+	     "file %s: %s\n") % lua_cfg_file % (lua_tostring(L,-1))
+	     );
+
+   LOG(TRACE,boost::format("Lua config script executed\n"));
+
+
+   const char* uig_assign_string = 
+      "rng.RandomGenerator_get_external_uig(UIG)";
+
+   if( luaL_dostring(L,uig_assign_string) )
+      LOG(EXCEPTION, boost::format("Exception caught while trying to run "\
+	       "uig assignment command %s: %s")
+	    % lua_cfg_file % (lua_tostring(L,-1))
+	    );
+
+   LOG(TRACE,boost::format("uig assignment performed\n"));
+
+   if (RandomGenerator::uig_holder == 0)
+      LOG(EXCEPTION, boost::format
+	    ("The UnitIntervalGenerator pointer does not appear to have "\
+	     "been properly initialised\n")
+	    );
+
+   try
+   {
+      double test = (*RandomGenerator::uig_holder)();
+      LOG(TRACE,boost::format("Test uig call executed,returning value %f\n")
+	    % test);
+   }
+   catch(...)
+   {
+      LOG(EXCEPTION, boost::format(
+	       "An exception has been caught whilst trying to invoke "\
+	       "the () operator of the UnitIntervalGenerator object")
+	    );
+   }
+
+   return RandomGenerator::uig_holder;
 }
 
 const UnitIntervalGenerator* RandomGenerator::uig()
 {
-   static UnitIntervalGenerator* dummy = RandomGenerator::uig_dict().
-      which(RandomGenerator::uig_name())->clone();
+   static const UnitIntervalGenerator* dummy = RandomGenerator::set_uig();
 
    return dummy;
 }

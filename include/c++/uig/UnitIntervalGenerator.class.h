@@ -29,8 +29,6 @@ namespace RNG
 
       UnitIntervalGenerator(bool,bool);
 
-      virtual UnitIntervalGenerator* clone() = 0;
-
       virtual ~UnitIntervalGenerator() = 0;
 
    protected:
