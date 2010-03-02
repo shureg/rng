@@ -23,4 +23,4 @@ namespace RNG
 %include "rng/generator/RandomGenerator.class.h"
 
 %include "rng.headers.swg"
-%include "rng.interface.swg"
+%include "rng.lua.interface.swg"
