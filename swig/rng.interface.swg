@@ -1,16 +1,3 @@
-%exception
-{
-   try
-   {
-      $action
-   }
-   catch(const char* c)
-   {
-      PyErr_SetString(PyExc_Exception,c);
-      return NULL;
-   }
-}
-
 %import "generator/TypedRandomGenerator.class.hpp"
 %template(TypedRandomGenerator_double) RNG::TypedRandomGenerator<double>;
 
@@ -28,3 +15,7 @@
 %include "generator/uniform_ratio/UniformRatioGenerator.class.h"
 
 %include "generator/uniform_ratio/urTGenerator.class.h"
+
+%include "generator/BetaGenerator.class.h"
+
+%include "generator/inverse_cdf/TriangularGenerator.class.h"

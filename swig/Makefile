@@ -17,6 +17,7 @@ LUA_VERSION_XY := $(shell env lua -v 2>&1 | cut -d' ' -f2)
 
 MODULE_PATH_python := $(PYTHON_PREFIX)/lib/python$(PYTHON_VERSION_XY)/site-packages
 MODULE_PATH_lua := $(LUA_PREFIX)/lib/lua/$(LUA_VERSION_XY)
+MODULE_PATH_r := $(HOME)/Data/lib
 
 SUFFIX_python = py
 SUFFIX_r = R
@@ -28,7 +29,7 @@ SWIG_LIBR_PATH = /usr/lib/R/lib
 
 MODULE := $(PROJECT_NAME)
 
-TARGET_LANGS := python lua
+TARGET_LANGS := python lua r
 
 INTERFACE_SOURCES = $(foreach l,$(TARGET_LANGS),$(OUTPUT_PATH)/$(MODULE).$l.swig_wrap.cc)
 INTERFACE_DEPS = $(patsubst %.cc,%.swd,$(INTERFACE_SOURCES))
@@ -69,7 +70,7 @@ $(OUTPUT_PATH)/$(MODULE).%.swig_wrap.so: WRAP_LIB_SO_NAME = $(DL_PREFIX)$(WRAP_M
 $(OUTPUT_PATH)/$(MODULE).%.swig_wrap.so: SWIG_RPATH_FLAG = $(if $(filter-out release,$(PROJECT_CONFIGURATION_TYPE)),$(,)-rpath=$(PROJECT_LIB_PATH),)
 
 $(OUTPUT_PATH)/$(MODULE).%.swig_wrap.so: $(OUTPUT_PATH)/$(MODULE).%.swig_wrap.o
-	g++ -shared -Wl,-soname=$(notdir $@)$(SWIG_RPATH_FLAG) -o $@ -L$(PROJECT_LIB_PATH) -llua -l$(LIB_NAME_STEM) $(DL_FLAGS) $< -l$(LIB_NAME_STEM) -llua
+	g++ -shared -Wl,-soname=$(notdir $@)$(SWIG_RPATH_FLAG) -o $@ -L$(PROJECT_LIB_PATH) -llua -l$(LIB_NAME_STEM) $(DL_FLAGS) $< $(DL_FLAGS) -l$(LIB_NAME_STEM) -llua
 	@$(call make_link,$(CURDIR)/$@,$(WRAP_LIB_SO_NAME))
 
 $(OUTPUT_PATH)/$(MODULE).%.swig_wrap.cc: $(MODULE).%.swig_wrap.swg

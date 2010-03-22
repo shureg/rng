@@ -2,6 +2,8 @@
 
 %include "rng.headers.swg"
 
+%include "rng.python.exception.swg"
+
 %include "rng.python.boost_shared_ptr.swg"
 
 %include "rng.interface.swg"
