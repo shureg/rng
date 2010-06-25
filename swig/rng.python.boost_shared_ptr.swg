@@ -3,6 +3,8 @@ SWIG_SHARED_PTR(bspTRG_d, RNG::TypedRandomGenerator<double>)
 
 SWIG_SHARED_PTR_DERIVED(bspUniformGenerator,RNG::TypedRandomGenerator<double>,RNG::UniformGenerator)
 
+SWIG_SHARED_PTR_DERIVED(bspConstGenerator_double,RNG::TypedRandomGenerator<double>,RNG::ConstGenerator<double>)
+
 SWIG_SHARED_PTR_DERIVED(bspICDFG_d,RNG::TypedRandomGenerator<double>,RNG::InverseCDFGenerator<double>)
 
 SWIG_SHARED_PTR_DERIVED(bspNormalGenerator,RNG::InverseCDFGenerator<double>,RNG::NormalGenerator)

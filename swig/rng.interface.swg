@@ -8,6 +8,9 @@
 %import "generator/inverse_cdf/InverseCDFGenerator.class.hpp"
 %template(InverseCDFGenerator_double) RNG::InverseCDFGenerator<double>;
 
+%import "generator/ConstGenerator.class.hpp"
+%template(ConstGenerator_double) RNG::ConstGenerator<double>;
+
 %include "generator/inverse_cdf/NormalGenerator.class.h"
 
 %include "generator/inverse_cdf/ParetoGenerator.class.h"

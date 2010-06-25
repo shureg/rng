@@ -6,4 +6,5 @@
 #include "generator/uniform_ratio/urTGenerator.class.h"
 #include "generator/BetaGenerator.class.h"
 #include "generator/inverse_cdf/TriangularGenerator.class.h"
+#include "generator/ConstGenerator.class.hpp"
 %}
