@@ -3,6 +3,7 @@
 #include "rng/uig/UnitIntervalGenerator.class.h"
 #include "rng/uig/gslPRGenerator.class.h"
 #include "rng/generator/RandomGenerator.class.h"
+#include "rng/uig/mtwistGenerator.class.h"
 %}
 
 %ignore endpoint_reachable;
@@ -15,6 +16,15 @@ namespace RNG
    public:
 
       gslPRGenerator();
+
+      double operator() () const;
+   };
+
+   class mtwistGenerator: public UnitIntervalGenerator
+   {
+   public:
+
+      mtwistGenerator();
 
       double operator() () const;
    };
