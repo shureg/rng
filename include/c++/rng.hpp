@@ -1,6 +1,7 @@
 #ifndef RNG_TOP_INC
 #define RNG_TOP_INC
 #include "rng/uig/gslPRGenerator.class.h"
+#include "rng/uig/mtwistGenerator.class.h"
 #include "rng/uig/UnitIntervalGenerator.class.h"
 #include "rng/algorithm/shuffle.hpp"
 #include "rng/generator/UniformIntGenerator.class.h"
@@ -14,9 +15,10 @@
 #include "rng/generator/ConstGenerator.class.hpp"
 #include "rng/generator/RandomGenerator.class.h"
 #include "rng/generator/UniformGenerator.class.h"
-#include "rng/generator/piecewise/LuaPiecewiseGenerator.class.hpp"
+#include "rng/generator/init.h"
 #include "rng/generator/piecewise/HistogramGenerator.class.h"
 #include "rng/generator/piecewise/PiecewiseRandomGenerator.class.hpp"
 #include "rng/generator/TypedRandomGenerator.class.hpp"
 #include "rng/math/Normals.h"
+#include "rng/mtwist/mtwist.h"
 #endif //RNG_TOP_INC
