@@ -1,3 +1,5 @@
+all: lib
+
 -include lib.config.mk
 
 DY_LIB_NAME = lib$(LIB_NAME_STEM).so
@@ -20,6 +22,8 @@ ifeq "$(MAKECMDGOALS)" "install"
 endif
 
 include lib.compile.mk
+
+-include lib.custom.mk
 
 $(DY_LIB_NAME): $(LIB_OBJECTS)
 	g++ -shared -Wl,-soname,$@ -o $@ $(LIB_DEP_FLAGS) $(LIB_DEP_PATH_FLAGS) $^

@@ -170,7 +170,7 @@ static char Rcs_Id[] =
 #define MT_INLINE			/* Disable the inline keyword */
 #define MT_EXTERN			/* Generate real code for functions */
 
-#include "mtwist.h"
+#include "rng/mtwist/mtwist.h"
 
 /*
  * Table of contents:
