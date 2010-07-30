@@ -31,7 +31,7 @@ namespace RNG
 {
    extern boost::mutex init_mutex;
 
-   extern boost::thread_specific_ptr< lua_State > ls;;
+   extern boost::thread_specific_ptr< lua_State > ls;
 
    extern boost::thread_specific_ptr< UnitIntervalGenerator > uig;
 

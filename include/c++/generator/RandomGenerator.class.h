@@ -13,8 +13,6 @@ using XML_SERIALISATION::XmlField;
 
 namespace RNG
 {
-   class UIG_Dictionary;
-
       //! A prototype of a generic random generator
       class RandomGenerator: public XmlSerialisableObject
       {

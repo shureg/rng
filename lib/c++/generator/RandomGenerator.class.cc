@@ -17,7 +17,9 @@ using namespace std;
 RandomGenerator::RandomGenerator()
 {
    if( RNG::uig.get() == 0)
+   {
       init();
+   }
 }
 
 RandomGenerator::~RandomGenerator() {}

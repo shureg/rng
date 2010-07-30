@@ -18,6 +18,8 @@
 #include "boost/lambda/bind.hpp"
 #include "callback_log/LOG.h"
 
+#include <iostream>
+
 extern "C"
 {
 #include "lua.h"
@@ -124,5 +126,5 @@ void RNG::init()
 void RNG::cleanup()
 {
    RNG::uig.release();
-   lua_close( RNG::ls.release() );
+   RNG::ls.release();
 }

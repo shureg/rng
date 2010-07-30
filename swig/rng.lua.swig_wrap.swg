@@ -4,6 +4,7 @@
 #include "rng/uig/gslPRGenerator.class.h"
 #include "rng/generator/RandomGenerator.class.h"
 #include "rng/uig/mtwistGenerator.class.h"
+#include "rng/generator/init.h"
 %}
 
 %ignore endpoint_reachable;
@@ -11,6 +12,8 @@
 
 namespace RNG
 {
+   void get_external_uig(UnitIntervalGenerator*);
+
    class gslPRGenerator: public UnitIntervalGenerator
    {
    public:

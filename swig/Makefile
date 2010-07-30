@@ -13,7 +13,7 @@ PYTHON_PREFIX := $(shell env python -c "import sys; print sys.prefix")
 PYTHON_VERSION_XY := $(shell env python -c "import sys; print sys.version" | head -n1 | cut -d' ' -f1 | cut -d'.' -f1-2)
 
 LUA_PREFIX := $(shell which lua | cut -d'/' -f1-3)
-LUA_VERSION_XY := $(shell env lua -v 2>&1 | cut -d' ' -f2)
+LUA_VERSION_XY := $(shell env lua -v 2>&1 | cut -d' ' -f2 | cut -d'.' -f1-2)
 
 MODULE_PATH_python := $(PYTHON_PREFIX)/lib/python$(PYTHON_VERSION_XY)/site-packages
 MODULE_PATH_lua := $(LUA_PREFIX)/lib/lua/$(LUA_VERSION_XY)

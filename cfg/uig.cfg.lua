@@ -13,7 +13,7 @@
 --  require('rng_lua_swig_wrap')
 --  rng = rng_lua_swig_wrap
 
-UIG = rng.gslPRGenerator()
+UIG = rng.mtwistGenerator()
 
 -- Concluding Lua chunk executed by the library:
 --  rng.RandomGenerator_get_external_uig(UIG)

@@ -18,7 +18,7 @@
 
 using RNG::mtwistGenerator;
 
-mt_prng mtwistGenerator::seeder;
+mt_prng mtwistGenerator::seeder(true);
 
 boost::mutex mtwistGenerator::seeder_mutex;
 
