@@ -1,26 +1,6 @@
-INCLUDE_DIRS = $(BOOST_INCLUDE_PATH) $(INSTALLED_HDR_PATH)
+all: mthread
 
-INCLUDE_FLAGS = $(foreach i,$(INCLUDE_DIRS),-I$i)
+mthread: mthread.o
+	g++ -o $@ -lrng $< -llua -ldl
 
-all: test_d
-
--include test.d
-
-test_d: test.o
-	g++ -o $@ -lrng $<
-
-clean:
-	@rm -rfv test_d
-	@rm -rfv test.o
-
-%: %.o
-
-%.o: %.cxx
-	$(call make_depend,$<,$@,$*.d,$(INCLUDE_FLAGS))
-	g++ -g -c -Wall -fPIC $(INCLUDE_FLAGS) -o $@ $<
-
-#A script ot generate dependency files for c/c++ sources
-#usage $(call make_depend,src_file,obj_file,dep_file,flags)
-define make_depend
-   g++ -MM -MF $3 -MP -MT $2 $4 $1
-endef
+mthread.o: CXXFLAGS += -g -fPIC -O2

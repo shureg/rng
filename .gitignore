@@ -5,6 +5,6 @@
 *.swo
 *~
 *.d
-/test_suite/*
 install
 swig/output
+test_suite/output
