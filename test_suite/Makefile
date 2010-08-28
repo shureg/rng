@@ -1,6 +1,9 @@
-all: mthread
+all: mthread xmlout
 
 mthread: mthread.o
 	g++ -o $@ -lrng $< -llua -ldl
 
-mthread.o: CXXFLAGS += -g -fPIC -O2
+xmlout: xmlout.o
+	g++ -o $@ -lrng $< -llua -ldl
+
+%.o: CXXFLAGS += -g -fPIC -O2
