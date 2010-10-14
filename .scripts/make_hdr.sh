@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo Updating the top header file "$1"
+
 cd $2
 find $3/ -regex ".*\.\(h\|hpp\|hxx\|H\|h++\|hh\)" ! -name "$1" -fprintf hpp.tmp "#include \"%p\"\n"
 uc_name=$(echo $3 | tr [:lower:] [:upper:])
