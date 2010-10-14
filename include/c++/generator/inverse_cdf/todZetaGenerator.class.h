@@ -25,7 +25,7 @@ namespace RNG
    {
    public:
 
-      todZetaGenerator(double shape);
+      todZetaGenerator(double shape, unsigned long min_value=1ul);
 
       ~todZetaGenerator(){}
 
@@ -35,7 +35,13 @@ namespace RNG
 
       double shape;
 
+      unsigned long min_value;
+
       double probability_mass_function(const unsigned long& k) const;
+
+   private:
+
+      unsigned long value_adjustment;
    };
 }
 

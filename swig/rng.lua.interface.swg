@@ -1,7 +1,10 @@
+%ignore xml_description;
+
 %import "generator/TypedRandomGenerator.class.hpp"
 %template(TypedRandomGenerator_double) RNG::TypedRandomGenerator<double>;
 
-%ignore xml_description;
+%import "generator/TypedRandomGenerator.class.hpp"
+%template(TypedRandomGenerator_ul) RNG::TypedRandomGenerator<unsigned long>;
 
 %include "generator/UniformGenerator.class.h"
 
@@ -15,3 +18,14 @@
 %include "generator/uniform_ratio/UniformRatioGenerator.class.h"
 
 %include "generator/uniform_ratio/urTGenerator.class.h"
+
+%import "generator/inverse_cdf/InverseCDFGenerator.class.hpp"
+%template(InverseCDFGenerator_ul) RNG::InverseCDFGenerator<unsigned long>;
+
+%import "generator/inverse_cdf/TabulatedOnDemandGenerator.class.hpp"
+%template(TabulatedOnDemand_ul) RNG::TabulatedOnDemandGenerator<unsigned long>;
+
+%import "generator/inverse_cdf/todIntegerGenerator.class.hpp"
+%template(toIntegerGenerator_ul) RNG::todIntegerGenerator<unsigned long>;
+
+%include "generator/inverse_cdf/todZetaGenerator.class.h"
