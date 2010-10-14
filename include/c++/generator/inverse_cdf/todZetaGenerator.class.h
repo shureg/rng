@@ -42,6 +42,7 @@ namespace RNG
    private:
 
       unsigned long value_adjustment;
+      double zeta_of_s;
    };
 }
 

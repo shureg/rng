@@ -21,12 +21,13 @@ using RNG::todZetaGenerator;
 
 todZetaGenerator::todZetaGenerator(double shape, unsigned long min_value): 
    todIntegerGenerator<unsigned long>(min_value),
-   shape(shape), min_value(min_value), value_adjustment(1ul - min_value)
+   shape(shape), min_value(min_value), 
+   value_adjustment(1ul - min_value), zeta_of_s( gsl_sf_zeta(shape) )
 {}
 
 double todZetaGenerator::probability_mass_function(const unsigned long& k) const
 {
-   return pow(k+value_adjustment,-shape)/gsl_sf_zeta(shape);
+   return pow(k+value_adjustment,-shape)/zeta_of_s;
 }
 
 XmlField todZetaGenerator::xml_description() const
