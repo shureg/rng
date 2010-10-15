@@ -8,7 +8,6 @@
 #include "rng/generator/uniform_ratio/urTGenerator.class.h"
 #include "rng/generator/uniform_ratio/UniformRatioGenerator.class.h"
 #include "rng/generator/inverse_cdf/ParetoGenerator.class.h"
-#include "rng/generator/inverse_cdf/todIntegerGenerator.class.h"
 #include "rng/generator/inverse_cdf/NormalGenerator.class.h"
 #include "rng/generator/inverse_cdf/InverseCDFGenerator.class.hpp"
 #include "rng/generator/inverse_cdf/todZetaGenerator.class.h"
