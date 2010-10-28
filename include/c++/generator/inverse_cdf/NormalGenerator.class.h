@@ -19,6 +19,8 @@ namespace RNG
 
 		const double InverseCDF(double) const;
 
+		COVARIANT_CLONE(NormalGenerator)
+
 	public:
 		//! Default constructor
 		/* Provides a standard Normal distribution */

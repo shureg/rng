@@ -6,6 +6,8 @@
 #include <iosfwd>
 #include"xml_serialisation/XmlSerialisableObject.class.h"
 
+#include "rng/covariant_clone.macro.h"
+
 #include "rng/generator/init.h"
 
 using XML_SERIALISATION::XmlSerialisableObject;

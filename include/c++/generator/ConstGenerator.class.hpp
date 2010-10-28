@@ -35,6 +35,8 @@ namespace RNG
       protected:
 
 	 T value;
+
+	 COVARIANT_CLONE(ConstGenerator<T>)
    };
 
    template<typename T> ConstGenerator<T>::ConstGenerator(const T& _value): value(_value)

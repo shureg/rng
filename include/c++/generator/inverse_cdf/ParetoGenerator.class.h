@@ -27,6 +27,8 @@ namespace RNG
 
       ParetoGenerator(double, double);
 
+      XmlField xml_description() const;
+
    protected:
 
       //! Minimal value
@@ -40,7 +42,7 @@ namespace RNG
 
       const double InverseCDF(double) const;
 
-      XmlField xml_description() const;
+      COVARIANT_CLONE(ParetoGenerator)
 
    private:
 

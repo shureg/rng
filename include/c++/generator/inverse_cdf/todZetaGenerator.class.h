@@ -39,6 +39,8 @@ namespace RNG
 
       double probability_mass_function(const unsigned long& k) const;
 
+      COVARIANT_CLONE(todZetaGenerator)
+
    private:
 
       unsigned long value_adjustment;

@@ -33,6 +33,8 @@ namespace RNG
 
       const double InverseCDF(double) const;
 
+      COVARIANT_CLONE(TriangularGenerator)
+
    private:
 
       double min, max, mode;

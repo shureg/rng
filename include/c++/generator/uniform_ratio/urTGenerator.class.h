@@ -54,6 +54,8 @@ namespace RNG
 
       double a_abs;
 
+      COVARIANT_CLONE(urTGenerator)
+
    };
 }
 

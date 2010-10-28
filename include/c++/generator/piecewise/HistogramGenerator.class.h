@@ -41,6 +41,8 @@ namespace RNG
 
      void populate(const std::vector<double>&,
 	   const std::vector< std::pair<double,double> >&);
+
+     COVARIANT_CLONE(HistogramGenerator)
    
    };
 }

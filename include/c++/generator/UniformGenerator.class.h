@@ -42,6 +42,7 @@ namespace RNG
 
       bool is_std;
 
+      COVARIANT_CLONE(UniformGenerator)
    };
 }
 

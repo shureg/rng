@@ -50,6 +50,8 @@ namespace RNG
 
       //! Additional auxilliary computaitonal variables
       mutable double U1, U2, V, Y;
+
+      COVARIANT_CLONE(BetaGenerator)
    };
 }
 

@@ -43,6 +43,8 @@ namespace RNG
 
       RNG::UniformGenerator U;
 
+      COVARIANT_CLONE(UniformIntGenerator)
+
    };
 }
 

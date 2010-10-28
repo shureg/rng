@@ -1,4 +1,7 @@
 %ignore xml_description;
+%ignore clone;
+
+%include "covariant_clone.macro.h"
 
 %import "generator/TypedRandomGenerator.class.hpp"
 %template(TypedRandomGenerator_double) RNG::TypedRandomGenerator<double>;
