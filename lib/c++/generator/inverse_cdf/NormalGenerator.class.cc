@@ -27,8 +27,8 @@ XmlField NormalGenerator::xml_description() const
 
    tmp("generator_type") = "inverse cdf";
 
-   tmp.add_field("mean",mean);
-   tmp.add_field("variance",var);
+   tmp("mean") = mean;
+   tmp("variance") = var;
 
    return tmp;
 }

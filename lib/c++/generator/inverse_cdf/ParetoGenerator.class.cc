@@ -36,8 +36,8 @@ XmlField ParetoGenerator::xml_description() const
 
    tmp("generator_type") = "inverse cdf";
 
-   tmp.add_field("minimal_value",x_min);
-   tmp.add_field("exponent",k);
+   tmp("minimal_value") = x_min;
+   tmp("exponent") = k;
 
    return tmp;
 }

@@ -72,7 +72,7 @@ XmlField urTGenerator::xml_description() const
    
    tmp("generator_type") = "uniform ratio";
 
-   tmp.add_field("nu",nu);
+   tmp("nu") = nu;
 
    return tmp;
 }
