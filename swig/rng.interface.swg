@@ -32,6 +32,8 @@
 
 %include "generator/inverse_cdf/TriangularGenerator.class.h"
 
+%include "generator/inverse_cdf/LuaDiscreteTableGenerator.class.h"
+
 %import "generator/inverse_cdf/TabulatedOnDemandGenerator.class.hpp"
 %template(TabulatedOnDemand_ul) RNG::TabulatedOnDemandGenerator<unsigned long>;
 

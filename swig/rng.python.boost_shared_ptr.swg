@@ -15,6 +15,8 @@ SWIG_SHARED_PTR_DERIVED(bspNormalGenerator,RNG::InverseCDFGenerator<double>,RNG:
 
 SWIG_SHARED_PTR_DERIVED(bspParetoGenerator,RNG::InverseCDFGenerator<double>,RNG::ParetoGenerator)
 
+SWIG_SHARED_PTR_DERIVED(bspLuaDiscreteTableGenerator,RNG::InverseCDFGenerator<double>,RNG::LuaDiscreteTableGenerator)
+
 SWIG_SHARED_PTR_DERIVED(bspURG,RNG::TypedRandomGenerator<double>,RNG::UniformRatioGenerator)
 
 SWIG_SHARED_PTR_DERIVED(bspurTGenerator,RNG::UniformRatioGenerator,RNG::urTGenerator)

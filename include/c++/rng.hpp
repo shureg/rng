@@ -8,6 +8,7 @@
 #include "rng/generator/uniform_ratio/urTGenerator.class.h"
 #include "rng/generator/uniform_ratio/UniformRatioGenerator.class.h"
 #include "rng/generator/inverse_cdf/ParetoGenerator.class.h"
+#include "rng/generator/inverse_cdf/LuaDiscreteTableGenerator.class.h"
 #include "rng/generator/inverse_cdf/NormalGenerator.class.h"
 #include "rng/generator/inverse_cdf/InverseCDFGenerator.class.hpp"
 #include "rng/generator/inverse_cdf/todZetaGenerator.class.h"
@@ -22,6 +23,7 @@
 #include "rng/generator/piecewise/HistogramGenerator.class.h"
 #include "rng/generator/piecewise/PiecewiseRandomGenerator.class.hpp"
 #include "rng/generator/TypedRandomGenerator.class.hpp"
+#include "rng/covariant_clone.macro.h"
 #include "rng/math/Normals.h"
 #include "rng/mtwist/mtwist.h"
 #endif //RNG_TOP_INC

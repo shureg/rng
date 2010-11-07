@@ -18,7 +18,11 @@
 
 %include "generator/inverse_cdf/ParetoGenerator.class.h"
 
+%include "generator/inverse_cdf/TriangularGenerator.class.h"
+
 %include "generator/uniform_ratio/UniformRatioGenerator.class.h"
+
+%include "generator/inverse_cdf/LuaDiscreteTableGenerator.class.h"
 
 %include "generator/uniform_ratio/urTGenerator.class.h"
 

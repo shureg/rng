@@ -8,4 +8,5 @@
 #include "generator/inverse_cdf/TriangularGenerator.class.h"
 #include "generator/ConstGenerator.class.hpp"
 #include "generator/inverse_cdf/todZetaGenerator.class.h"
+#include "generator/inverse_cdf/LuaDiscreteTableGenerator.class.h"
 %}
