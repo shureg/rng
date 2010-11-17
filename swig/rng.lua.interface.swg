@@ -11,6 +11,8 @@
 
 %include "generator/UniformGenerator.class.h"
 
+%include "generator/BetaGenerator.class.h"
+
 %import "generator/inverse_cdf/InverseCDFGenerator.class.hpp"
 %template(InverseCDFGenerator_double) RNG::InverseCDFGenerator<double>;
 
